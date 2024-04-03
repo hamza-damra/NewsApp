@@ -1,6 +1,8 @@
 package com.hamza.newsapp.Models;
 
-public class Source {
+import java.io.Serializable;
+
+public class Source implements Serializable {
     /**
      {
      "source": {

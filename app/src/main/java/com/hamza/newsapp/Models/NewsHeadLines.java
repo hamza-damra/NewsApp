@@ -2,9 +2,10 @@ package com.hamza.newsapp.Models;
 
 import androidx.annotation.NonNull;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class NewsHeadLines {
+public class NewsHeadLines implements Serializable {
     private Source source;
     private String author;
     private String title;

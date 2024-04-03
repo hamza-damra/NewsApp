@@ -17,9 +17,11 @@ import java.util.List;
 public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder>{
     private Context mContext;
     private List<NewsHeadLines> newsHeadLinesList;
-    public CustomAdapter(Context mContext, List<NewsHeadLines> newsHeadLinesList) {
+    private SelectListener selectListener;
+    public CustomAdapter(Context mContext, List<NewsHeadLines> newsHeadLinesList, SelectListener selectListener) {
         this.mContext = mContext;
         this.newsHeadLinesList = newsHeadLinesList;
+        this.selectListener = selectListener;
     }
     @NonNull
     @Override
@@ -40,6 +42,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder>{
             holder.card_view.setVisibility(View.VISIBLE);
             holder.text_title.setText(newsHeadLines.getTitle());
             holder.text_source.setText(newsHeadLines.getSource().getName());
+            holder.card_view.setOnClickListener(v -> {
+                selectListener.onNewsClicked(newsHeadLinesList.get(position));
+            });
             if(newsHeadLines.getUrlToImage() != null) {
                 Picasso.get().load(newsHeadLines.getUrlToImage()).into(holder.image_headline);
             } else {

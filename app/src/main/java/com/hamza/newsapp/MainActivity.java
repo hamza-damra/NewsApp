@@ -2,6 +2,7 @@ package com.hamza.newsapp;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
@@ -22,7 +23,7 @@ import com.hamza.newsapp.Models.NewsHeadLines;
 import java.util.List;
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SelectListener {
     RecyclerView recyclerView;
     CustomAdapter customAdapter;
     Toolbar toolbar;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             private void showNews(List<NewsHeadLines> newsHeadLines) {
-                customAdapter = new CustomAdapter(MainActivity.this, newsHeadLines);
+                customAdapter = new CustomAdapter(MainActivity.this, newsHeadLines, MainActivity.this);
                 recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                 recyclerView.setAdapter(customAdapter);
             }
@@ -76,5 +77,13 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         requestManager.getNewsHeadLines(onFetchDataListener, "general", "");
+    }
+
+    @Override
+    public void onNewsClicked(NewsHeadLines newsHeadLines) {
+        Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+        intent.putExtra("news", newsHeadLines);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 }
