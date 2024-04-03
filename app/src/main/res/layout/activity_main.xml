@@ -18,12 +18,120 @@
         app:titleTextColor="@color/white"
         app:title="News App"
         />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_main"
+    
+    <HorizontalScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp">
 
-        />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_general"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:padding="6dp"
+                android:textSize="12sp"
+                android:text="General" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_business"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:padding="6dp"
+                android:textSize="12sp"
+                android:text="Business" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_entertainment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:padding="6dp"
+                android:textSize="12sp"
+                android:text="Entertainment" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_health"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:padding="6dp"
+                android:textSize="12sp"
+                android:text="Health" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_science"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:padding="6dp"
+                android:textSize="12sp"
+                android:text="Science" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_sports"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:padding="6dp"
+                android:textSize="12sp"
+                android:text="Sports" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_technology"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:padding="6dp"
+                android:textSize="12sp"
+                android:text="Technology" />
+
+
+
+
+        </LinearLayout>
+
+
+
+    </HorizontalScrollView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="8dp"
+        app:cardCornerRadius="8dp"
+        android:layout_margin="14dp">
+
+        <androidx.appcompat.widget.SearchView
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:defaultQueryHint="Search News"
+            app:iconifiedByDefault="false"
+            android:id="@+id/search_view"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/swipe_refresh_layout"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
 </LinearLayout>

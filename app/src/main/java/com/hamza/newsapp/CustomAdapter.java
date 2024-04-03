@@ -35,11 +35,21 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder>{
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         NewsHeadLines newsHeadLines = newsHeadLinesList.get(position);
         if (newsHeadLines.getTitle().equals("[Removed]")) {
-            // If the title is "[Removed]", hide the CardView
-            holder.card_view.removeView(holder.card_view);
+            // If the title is "[Removed]", set CardView height to 0 and hide it
+            holder.card_view.setVisibility(View.GONE);
+            ViewGroup.LayoutParams params = holder.card_view.getLayoutParams();
+            params.height = 0;
+            holder.card_view.setLayoutParams(params);
+            // Set margins and padding to 0
+            ViewGroup.MarginLayoutParams marginParams = (ViewGroup.MarginLayoutParams) holder.card_view.getLayoutParams();
+            marginParams.setMargins(0, 0, 0, 0);
+            holder.card_view.requestLayout();
         } else {
             // Else, populate the data as usual and make sure the CardView is visible
             holder.card_view.setVisibility(View.VISIBLE);
+            ViewGroup.LayoutParams params = holder.card_view.getLayoutParams();
+            params.height = ViewGroup.LayoutParams.WRAP_CONTENT; // Set height to wrap content
+            holder.card_view.setLayoutParams(params);
             holder.text_title.setText(newsHeadLines.getTitle());
             holder.text_source.setText(newsHeadLines.getSource().getName());
             holder.card_view.setOnClickListener(v -> {
@@ -53,6 +63,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomViewHolder>{
             }
         }
     }
+
 
 
     @Override
